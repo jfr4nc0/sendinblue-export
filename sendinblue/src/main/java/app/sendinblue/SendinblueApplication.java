@@ -15,7 +15,6 @@ import sendinblue.auth.*;
 import sibModel.*;
 import sibApi.*;
 import network.AnalizarCsvURL;
-import network.HttpsDownloadUtility;
 
 
 
@@ -27,7 +26,7 @@ public class SendinblueApplication {
 		String fileURL = archivo;
 		String saveDir = "Z:\\SendinBlue";
 		try {
-			AnalizarCsvURL.descargarCSV(fileURL);
+			AnalizarCsvURL.descargarCSV(fileURL,saveDir);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,6 +41,8 @@ public class SendinblueApplication {
         apiKey.setApiKey("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");
 
         try {
+        	
+        	// Solicita el EXPORT a SendinBlue
 //            ContactsApi apiContactos = new ContactsApi();
 //            List<String> exportAttributes = new ArrayList<String>();
 //            exportAttributes.add("EMAIL");
@@ -50,11 +51,12 @@ public class SendinblueApplication {
 //            requestContactExportCustomContactFilter.setListId(522L);
 //            RequestContactExport requestContactExport = new RequestContactExport();
 //            requestContactExport.setExportAttributes(exportAttributes);
-////            requestContactExport.setNotifyUrl("http://127.0.0.1:5500");
 //            requestContactExport.setCustomContactFilter(requestContactExportCustomContactFilter);
 //            CreatedProcessId processId = apiContactos.requestContactExport(requestContactExport);
+        	// Espera 5 min a que generen el archivo .csv en el servidor
 //            Thread.sleep(5*60*1000);
 //            Long id = processId.getProcessId();
+        	// Toma los datos del proceso y la url
             ProcessApi apiProceso = new ProcessApi();
             GetProcess res = apiProceso.getProcess(1251l);
             String url = res.getExportUrl();
