@@ -24,7 +24,7 @@ public class SendinblueApplication {
 	
 	private static void DescargaURL(String archivo) {
 		String fileURL = archivo;
-		String saveDir = "Z:\\SendinBlue";
+		String saveDir = ""; // Ruta para guardar los archivos descargados
 		try {
 			AnalizarCsvURL.descargarCSV(fileURL,saveDir);
 		} catch (IOException e) {
@@ -38,7 +38,7 @@ public class SendinblueApplication {
         
         // Configure API key authorization: api-key
         ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
-        apiKey.setApiKey("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");
+        apiKey.setApiKey(""); // API de SendinBlue
 
         try {
         	
